@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +21,9 @@ public class AppUser {
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<AppRole> roles=new ArrayList<>();
+
+    @OneToMany
+    private List<LikedShop> likedShops=new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -52,5 +56,22 @@ public class AppUser {
 
     public Collection<AppRole> getRoles() {
         return roles;
+    }
+
+    public List<LikedShop> getLikedShops() {
+        return likedShops;
+    }
+
+    public void setLikedShops(List<LikedShop> likedShops) {
+        this.likedShops = likedShops;
+    }
+
+    public void deleteLikedShop(String reference){
+        for (LikedShop shop:this.likedShops)
+            if (shop.getReference().equals(reference))
+            {
+                this.likedShops.remove(shop);
+                return;
+            }
     }
 }

@@ -34,13 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/login","/register").permitAll()
+                .authorizeRequests().antMatchers("/login","/checkUsername","/register").permitAll()
                 .antMatchers(HttpMethod.POST,"/likedShops").hasAnyAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthentictionFilter(authenticationManager()))
                 .addFilterBefore(new JWTAutorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-
-
 }

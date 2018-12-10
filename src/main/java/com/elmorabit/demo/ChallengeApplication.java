@@ -35,15 +35,8 @@ public class ChallengeApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        accountService.saveUser(new AppUser(null,"user@gmail.com","1234",null));
+        accountService.saveUser(new AppUser(null,"user@gmail.com","1234",null,null));
         accountService.saveRole(new AppRole(null,"USER"));
         accountService.addRoleToUser("user@gmail.com","USER");
-
-        Stream.of("shop1","shop2","shop3").forEach(t->
-                likedShopRepository.save(new LikedShop(null,t))
-        );
-        likedShopRepository.findAll().forEach(likedShop->
-                System.out.println(likedShop.getReference())
-        );
     }
 }
