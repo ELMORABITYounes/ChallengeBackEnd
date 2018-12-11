@@ -20,7 +20,7 @@ public class AccountRestController {
             throw new RuntimeException("Passwords do not match");
         if (accountService.findUserByUsername(userForm.getUsername())!=null)
             throw new RuntimeException("username already in use");
-        AppUser appUser=new AppUser(null,userForm.getUsername(),userForm.getPassword(),new ArrayList<>(),new ArrayList<>());
+        AppUser appUser=new AppUser(null,userForm.getUsername(),userForm.getPassword(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         accountService.saveUser(appUser);
         accountService.addRoleToUser(userForm.getUsername(),"USER");
         return appUser;

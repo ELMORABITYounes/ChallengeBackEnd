@@ -25,6 +25,17 @@ public class AppUser {
     @OneToMany
     private List<LikedShop> likedShops=new ArrayList<>();
 
+    public List<DislikedShop> getDislikedShops() {
+        return dislikedShops;
+    }
+
+    public void setDislikedShops(List<DislikedShop> dislikedShops) {
+        this.dislikedShops = dislikedShops;
+    }
+
+    @OneToMany
+    private List<DislikedShop> dislikedShops=new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -71,6 +82,15 @@ public class AppUser {
             if (shop.getReference().equals(reference))
             {
                 this.likedShops.remove(shop);
+                return;
+            }
+    }
+
+    public void deleteDislikedShop(String reference){
+        for (DislikedShop shop:this.dislikedShops)
+            if (shop.getReference().equals(reference))
+            {
+                this.dislikedShops.remove(shop);
                 return;
             }
     }

@@ -3,6 +3,7 @@ package com.elmorabit.demo;
 import com.elmorabit.demo.dao.LikedShopRepository;
 import com.elmorabit.demo.entities.AppRole;
 import com.elmorabit.demo.entities.AppUser;
+import com.elmorabit.demo.entities.DislikedShop;
 import com.elmorabit.demo.entities.LikedShop;
 import com.elmorabit.demo.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -35,7 +37,7 @@ public class ChallengeApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        accountService.saveUser(new AppUser(null,"user@gmail.com","1234",null,null));
+        accountService.saveUser(new AppUser(null,"user@gmail.com","1234",new ArrayList<>(),new ArrayList<>(),new ArrayList<>()));
         accountService.saveRole(new AppRole(null,"USER"));
         accountService.addRoleToUser("user@gmail.com","USER");
     }
