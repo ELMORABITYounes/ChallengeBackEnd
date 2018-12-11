@@ -18,13 +18,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 @SpringBootApplication
-public class ChallengeApplication implements ApplicationRunner {
-
-    @Autowired
-    private LikedShopRepository likedShopRepository;
-
-    @Autowired
-    private AccountService accountService;
+public class ChallengeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ChallengeApplication.class, args);
@@ -33,12 +27,5 @@ public class ChallengeApplication implements ApplicationRunner {
     @Bean
     public BCryptPasswordEncoder newBcrypt(){
         return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        accountService.saveUser(new AppUser(null,"user@gmail.com","1234",new ArrayList<>(),new ArrayList<>(),new ArrayList<>()));
-        accountService.saveRole(new AppRole(null,"USER"));
-        accountService.addRoleToUser("user@gmail.com","USER");
     }
 }
