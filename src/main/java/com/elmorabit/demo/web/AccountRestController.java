@@ -22,7 +22,7 @@ public class AccountRestController {
             throw new RuntimeException("username already in use");
         AppUser appUser=new AppUser(null,userForm.getUsername(),userForm.getPassword(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         accountService.saveUser(appUser);
-        accountService.addRoleToUser(userForm.getUsername(),"USER");
+        accountService.addRoleToUser(appUser.getUsername(),"USER");
         return appUser;
     }
 
